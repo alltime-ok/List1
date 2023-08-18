@@ -35,7 +35,7 @@ class PlantAdapter:RecyclerView.Adapter<PlantAdapter.PlantHolder>() {
         }
 
     fun clearPlant(plant: Plant){
-        plantList.clear(plant)
+        plantList.clear()
         notifyDataSetChanged()
     }
 }

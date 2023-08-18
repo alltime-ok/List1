@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     private var index = 0
+    private var plant: Plant? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +31,20 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
         rcView.layoutManager = GridLayoutManager(this@MainActivity, 3)
         rcView.adapter = adapter
-
             buttonAdd.setOnClickListener {
                 if(index > 4) index = 0
-                val plant = Plant(imageIdList[index], "plant $index")
-                adapter.addPlant(plant)
+               plant = Plant(imageIdList[index], "plant $index")
+                adapter.addPlant(plant!!)
                 index++
             }
-//            buttonClean.setOnClickListener{
-//                adapter.clearPlant(plant)
-//            }
+
+            buttonClean.setOnClickListener{
+                if(plant != null){
+                    adapter.clearPlant(plant!!)
+                    index = 0
+                }
+
+            }
         }
 
     }
